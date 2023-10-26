@@ -19,3 +19,57 @@
 
 ## Блок-схема алгоритма 
 ![](https://github.com/SkorokhodNikita/final_test1/blob/main/%D0%B1%D0%BB%D0%BE%D0%BA-%D1%81%D1%85%D0%B5%D0%BC%D0%B0%20%D0%B0%D0%BB%D0%B3%D0%BE%D1%80%D0%B8%D1%82%D0%BC%D0%B01.png?raw=true)
+
+## Решение
+Сначала просим пользователя ввести желаемое количество элементов массива и сохраняем в переменную `size`.
+```C#
+Console.Write("Введите количество элементов массива: ");
+int size = Convert.ToInt32(Console.ReadLine());
+```
+Далее создаем новый строковый массив размером `size`.
+```C#
+string[] stringArr = new string[size];
+```
+Для ввода первоначального массива с клавиатуры используется метод `GetElement`
+```C#
+void GetElement(string[] stringArr)
+{
+    for (int i = 0; i < size; i++)
+    {
+        Console.Write($"Введите {i + 1}-й элемент: ");
+        stringArr[i] = Console.ReadLine()!;
+    }
+}
+```
+В методе `NewArray` вводим новую переменную `newSize`, которая будет отвечать за размер нового массива, в котором останутся элементы, длина которых меньше, либо равна 3 символам.
+```C#
+    for (int i = 0; i < stringArr.Length; i++)
+    {
+        if (stringArr[i].Length <= 3)
+        {
+            newSize++;
+        }
+    }
+```
+Далее создаем новый массив, каждый элемент которого удовлетворят условию выше
+```C#
+string[] newStringArr = new string[newSize];
+    int j = 0;
+    for (int i = 0; i < stringArr.Length; i++)
+    {
+        if (stringArr[i].Length <= 3)
+        {
+            newStringArr[j] = stringArr[i];
+            j++;
+        }
+    }
+```
+Метод `PrintArray` отвечает за вывод в консоль массива
+```C#
+void PrintArray(string[] newStringArr)
+{
+    Console.Write("[");
+    Console.Write(string.Join(", ", newStringArr));
+    Console.Write("]");
+}
+```
